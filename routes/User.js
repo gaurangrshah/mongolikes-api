@@ -39,7 +39,7 @@ userRouter.delete(
   deletePostById
 );
 
-// private route // todo move to userRouter
+// private route
 userRouter.post(
   "/like/:postId",
   passport.authenticate("jwt", { session: false }),
