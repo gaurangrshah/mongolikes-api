@@ -47,8 +47,8 @@ async function likePostById(req, res) {
   const response = await userService.updateLikes(
     req.params?.postId,
     req.user,
-    postsService.updateLikeOnPost,
-    postsService.updateLikeByUser
+    userService.updateLikeOnPost,
+    userService.updateLikeByUser
   );
 
   res.status(response?.status || 400).json(response);
