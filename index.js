@@ -15,7 +15,7 @@ app.use(morgan("tiny"));
 app.use(cookieParser());
 
 // routes
-// app.use("/", defaultRouter);
+app.use("/", defaultRouter);
 // app.use("/api/product", product);
 
 //
