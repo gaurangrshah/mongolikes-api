@@ -10,9 +10,16 @@ const {
   deletePostById,
   getOwnPosts,
   publishPost,
+  likePostById,
 } = require("../controllers/user");
 
 userRouter.get("/me", passport.authenticate("jwt", { session: false }), me);
+
+userRouter.get(
+  "/posts",
+  passport.authenticate("jwt", { session: false }),
+  getOwnPosts
+);
 
 userRouter.post(
   "/post/create",
@@ -20,10 +27,10 @@ userRouter.post(
   createPost
 );
 
-userRouter.get(
-  "/posts",
+userRouter.post(
+  "/publish/:postId",
   passport.authenticate("jwt", { session: false }),
-  getOwnPosts
+  publishPost
 );
 
 userRouter.delete(
@@ -32,10 +39,13 @@ userRouter.delete(
   deletePostById
 );
 
+// private route // todo move to userRouter
 userRouter.post(
-  "/publish/:postId",
+  "/like/:postId",
   passport.authenticate("jwt", { session: false }),
-  publishPost
+  likePostById
 );
+
+module.exports = userRouter;
 
 module.exports = userRouter;

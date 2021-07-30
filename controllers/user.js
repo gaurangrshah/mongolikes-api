@@ -2,6 +2,7 @@ const userService = require("../services/user-service");
 const { errors } = require("../utils");
 
 async function me(req, res) {
+  console.log("🚀 | file: user.js | line 5 | req", req.user);
   // possibly a redundant check, since passport middleware is already validating the user
   if (!req.isAuthenticated()) res.status(401).json(errors.unauthorized);
   const user = await userService.profile(req.user?._id);
@@ -41,10 +42,24 @@ async function deletePostById(req, res) {
   }
 }
 
+async function likePostById(req, res) {
+  // add or remove like based on if the user likes post already´
+  const response = await userService.updateLikes(
+    req.params?.postId,
+    req.user,
+    postsService.updateLikeOnPost,
+    postsService.updateLikeByUser
+  );
+
+  res.status(response?.status || 400).json(response);
+}
+
+
 module.exports = {
   me,
   createPost,
   getOwnPosts,
   deletePostById,
   publishPost,
+  likePostById,
 };

@@ -25,22 +25,10 @@ async function getPostById(req, res) {
   res.status(response?.status).json(response);
 }
 
-async function likePostById(req, res) {
-  // add or remove like based on if the user likes post already´
-  const response = await postsService.updateLikes(
-    req.params?.postId,
-    req.user,
-    postsService.updateLikeOnPost,
-    postsService.updateLikeByUser
-  );
-
-  res.status(response?.status || 400).json(response);
-}
 
 module.exports = {
   getFeed,
   getPostsByAuthor,
   getPostBySlug,
   getPostById,
-  likePostById,
 };

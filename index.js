@@ -5,6 +5,8 @@ const morgan = require("morgan");
 const defaultRouter = require("./routes/index");
 const product = require("./api/product");
 const authRouter = require("./routes/Auth");
+const userRouter = require("./routes/User");
+const postRouter = require("./routes/Post");
 const connectDB = require("./services/mongoose");
 
 const app = express();
@@ -20,6 +22,8 @@ app.use("/", defaultRouter);
 
 //
 app.use("/auth", authRouter);
+app.use("/user", userRouter);
+app.use("/post", postRouter);
 // appuse('/auth', authRouter)
 
 const PORT = process.env.PORT || 8080;
