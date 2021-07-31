@@ -1,9 +1,6 @@
 const express = require("express");
 const postRouter = express.Router();
 
-const passport = require("passport");
-const passportConfig = require("../services/passport");
-
 const {
   getFeed,
   getPostsByAuthor,
