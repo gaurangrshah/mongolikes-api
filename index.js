@@ -1,7 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
-const cors = require("cors");
 
 const connectDB = require("./services/mongoose");
 const authRouter = require("./routes/Auth");
@@ -13,12 +12,6 @@ const app = express();
 
 // middleware
 app.use(express.json());
-app.use(
-  cors({
-    // allow production app to access the api
-    origin: "https://mongolikes-app.vercel.app",
-  })
-);
 app.use(morgan("tiny"));
 app.use(cookieParser());
 
