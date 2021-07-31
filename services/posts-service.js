@@ -10,9 +10,6 @@ module.exports = {
         .sort({ published: "desc" })
         .populate("author")
         .exec();
-
-      console.log("🚀 | file: posts-service.js | line 10 | posts", posts?.length);
-
       return {
         status: 200,
         posts: posts?.length && posts.filter((post) => post.published),

@@ -12,12 +12,6 @@ async function getPostsByAuthor(req, res) {
 
 async function getFeed(req, res) {
   const response = await postsService.getFeed();
-  console.log(
-    "🚀 | file: post.js | line 15 | response",
-    response.posts.length,
-    response.status,
-    response.message
-  );
   res.status(200).json(response);
 }
 
