@@ -1,4 +1,4 @@
-const mongoose = require("../services/mongoose");
+const mongoose = require("mongoose");
 const seedFaker = require("../services/faker.js");
 const { errors } = require("../utils");
 function seeder(req, res) {

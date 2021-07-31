@@ -2,12 +2,11 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 
-const defaultRouter = require("./routes/index");
-const product = require("./api/product");
+const connectDB = require("./services/mongoose");
 const authRouter = require("./routes/Auth");
 const userRouter = require("./routes/User");
 const postRouter = require("./routes/Post");
-const connectDB = require("./services/mongoose");
+const seedRouter = require("./routes/Seed");
 
 const app = express();
 
@@ -17,14 +16,10 @@ app.use(morgan("tiny"));
 app.use(cookieParser());
 
 // routes
-app.use("/", defaultRouter);
-// app.use("/api/product", product);
-
-//
 app.use("/auth", authRouter);
 app.use("/user", userRouter);
 app.use("/post", postRouter);
-// appuse('/auth', authRouter)
+app.use("/seed", seedRouter);
 
 const PORT = process.env.PORT || 8080;
 
