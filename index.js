@@ -11,11 +11,24 @@ const seedRouter = require("./routes/Seed");
 
 const app = express();
 
+const whitelist = [
+  "https://mongolikes-app.vercel.app",
+  "http://localhost:3000",
+];
+
 // middleware
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://mongolikes-app.vercel.app",
+    origin: function (origin, callback) {
+      // allow requests with no origin
+      if (!origin) return callback(null, true);
+      if (whitelist.indexOf(origin) === -1) {
+        const message = "this origin is not allowed under CORS policy.";
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
   })
 );
 app.use(morgan("tiny"));
