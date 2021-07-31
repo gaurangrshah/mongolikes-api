@@ -12,6 +12,7 @@ async function getPostsByAuthor(req, res) {
 
 async function getFeed(req, res) {
   const response = await postsService.getFeed();
+  console.log("🚀 | file: post.js | line 15 | response", response);
   res.status(200).json(response);
 }
 
@@ -24,7 +25,6 @@ async function getPostById(req, res) {
   const response = await postsService.getPostById(req.params?.postId);
   res.status(response?.status).json(response);
 }
-
 
 module.exports = {
   getFeed,

@@ -2,7 +2,6 @@ const userService = require("../services/user-service");
 const { errors } = require("../utils");
 
 async function me(req, res) {
-  console.log("🚀 | file: user.js | line 5 | req", req.user);
   // possibly a redundant check, since passport middleware is already validating the user
   if (!req.isAuthenticated()) res.status(401).json(errors.unauthorized);
   const user = await userService.profile(req.user?._id);
@@ -29,7 +28,6 @@ async function publishPost(req, res) {
     req.params?.postId,
     req?.user?.id
   );
-  console.log("🚀 | file: user.js | line 32 | response", response);
   res.status(response?.status).json(response);
 }
 
